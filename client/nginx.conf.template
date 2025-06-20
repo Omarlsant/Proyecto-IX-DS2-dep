@@ -1,5 +1,5 @@
 upstream api_server {
-    server backend_api:8000; # <--- DE 'backend' A 'backend_api'
+    server ${NGINX_BACKEND_HOST};
 }
 
 server {
@@ -16,7 +16,7 @@ server {
     # Esta parte ya es correcta, porque apunta a 'api_server' que acabamos de definir.
     location /api/ {
         rewrite /api/(.*) /$1 break;
-        proxy_pass $NGINX_PROXY_PASS;
+        proxy_pass http://api_server;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
