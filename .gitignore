@@ -37,4 +37,3 @@ cnn_pytorch.pth
 .vite/
 
 client/.env.development
-client/.env.production
