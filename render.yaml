@@ -1,3 +1,5 @@
+version: 1
+
 services:
   - type: web
     name: backend-api
@@ -11,8 +13,3 @@ services:
     name: frontend
     env: docker
     dockerfilePath: ./client/Dockerfile
-    healthCheckPath: /
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /
