@@ -1,3 +1,6 @@
+previews: false
+version: 1
+
 services:
   - type: web
     name: backend-api
@@ -6,9 +9,13 @@ services:
     envVars:
       - key: PORT
         value: 8000
-  - type: static
+
+  - type: web
     name: frontend
+    env: docker
     dockerfilePath: ./client/Dockerfile
-    rewrites:
-      - source: /*
-        destination: /index.html
+    healthCheckPath: /
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /
