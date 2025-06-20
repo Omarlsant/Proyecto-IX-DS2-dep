@@ -3,10 +3,11 @@ services:
     name: backend-api
     env: docker
     dockerfilePath: ./backend_api/Dockerfile
-    
-  - type: web
+    envVars:
+      - key: PORT
+        value: 8000
+  - type: static
     name: frontend
-    env: docker
     dockerfilePath: ./client/Dockerfile
     rewrites:
       - source: /*
